@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { compose, pipe} from 'lodash/fp';
 
 function App() {
+  let input = "   JavaScript  ";
+  let output = "<div>" + input.trim() + "</div>";
+
+  const trim = str => str.trim()
+  const wrapInDiv = str => `<div>${str}</div>`;
+  const wrapInSpan = str => `<span>${str}</span>`;
+  const toLowerCase = str => str.toLowerCase();
+
+  const transform = pipe(trim, toLowerCase, wrapInDiv)
+  console.log(transform(input));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Hello
     </div>
   );
 }
